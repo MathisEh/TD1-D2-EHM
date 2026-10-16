@@ -45,9 +45,9 @@ def chiffrer(s,dec):
       indice = accentMaj.index(e)
       s2 += accentMin[indice]
     elif o >= 97 and o <= 122:
-      s2 += chr(o-32+dec)
+      s2 += chr((o-32+dec) % 26 + 65)
     elif o >= 65 and o <= 90:
-      s2 += chr(o+32+dec)
+      s2 += chr((o+32+dec) % 26 + 97)
     else:
       s2 += e
   return s2
