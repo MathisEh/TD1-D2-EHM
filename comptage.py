@@ -23,12 +23,15 @@ def lire():
     nbrchar = 0
     nbrmots = 0
     nbrligne = 1
-    for i in range(0,len(s)):
+    if s[0] != " ":
+        s = " " + s
+    for i in range(1,len(s)):
         nbrchar += 1
         if s[i] == "\n":
             nbrligne += 1
-        
-    print("nombre de lettre:", nbrchar)
+        if (s[i] != " " and s[i] != "\n" and s[i] != "\t") and (s[i-1] == " " or s[i-1] == "\n" or s[i-1] == "\t"):
+            nbrmots += 1
+    print("nombre de lettre:", len(s)-1)
     print("nombre de mots:", nbrmots)
     print("nombre de ligne:", nbrligne)
     return 0
