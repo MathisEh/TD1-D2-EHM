@@ -22,17 +22,12 @@ def lire():
         s = sys.stdin.read()
     nbrchar = 0
     nbrmots = 0
-    nbrligne = 0
+    nbrligne = 1
     for i in range(0,len(s)):
+        nbrchar += 1
         if s[i] == "\n":
             nbrligne += 1
-            nbrmots += 1
-        elif (s[i] == " " or s[i] == "\t") and (s[i+1] != "\n"):
-            nbrmots += 1
-        nbrchar += 1
-    if s[-1] != "\n" and s[-1] != "\t" and s[-1] != " ":
-        nbrligne += 1
-        nbrmots += 1                   #on considère "\n", "\t", " " comme des caractère
+        
     print("nombre de lettre:", nbrchar)
     print("nombre de mots:", nbrmots)
     print("nombre de ligne:", nbrligne)
