@@ -22,6 +22,9 @@ def lire():
     except:
         print("erreur, le fichier n'existe pas")
         return 1
+    if s = "":
+        print("fichier vide")
+        return 0
     compt = [0 for i in range(0,26)]
     for i in range(0,len(s)):
         match s[i]:
@@ -35,14 +38,18 @@ def lire():
                 compt[0] += 1
             case "ç":
                 compt[2] += 1
-            case :
+            case _ :
                 o = ord(s[i])
                 if o >= 65 and o <= 90:
                     compt[o-65] += 1
                 if o >= 97 and o <= 122:
                     compt[o-97] += 1
-    return compt
-
+    tot = 0
+    for e in compt:
+        tot = e + tot
+    for i in range(0,26):
+        print(chr(i+97),"|",compt[i],"|",compt[i]/tot,"%")
+    return 0
 
 
 if __name__ == "__main__":
