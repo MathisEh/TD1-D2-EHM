@@ -10,11 +10,11 @@
 import sys,os
 
 def lire():
-    if len(sys.argv)>0:
+    if len(sys.argv)>1:
         chemin = sys.argv[1]
         try:
             flux = open(chemin,'r')
-            s = read.flux()
+            s = flux.read()
         except:
             print("erreur, le fichier n'existe pas")
             return 1
@@ -23,12 +23,16 @@ def lire():
     nbrchar = 0
     nbrmots = 0
     nbrligne = 0
-    for e in s:
-        nbrchar += 1
-        if e == " " or e == "\n" or e == "\t":
-            nbrmots += 1
-        if e == "\n":
+    for i in range(0,len(s)):
+        if s[i] == "\n":
             nbrligne += 1
+            nbrmots += 1
+        elif (s[i] == " " or s[i] == "\t") and (s[i+1] != "\n"):
+            nbrmots += 1
+        nbrchar += 1
+    if s[-1] != "\n" and s[-1] != "\t" and s[-1] != " ":
+        nbrligne += 1
+        nbrmots += 1                   #on considère "\n", "\t", " " comme des caractère
     print("nombre de lettre:", nbrchar)
     print("nombre de mots:", nbrmots)
     print("nombre de ligne:", nbrligne)
