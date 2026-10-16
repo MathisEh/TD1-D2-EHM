@@ -15,6 +15,42 @@
 - Votre programme devra traiter de manière spécifique les caractères accentués : il se contentera d'en changer la casse, sans réaliser de décalage.
 - Une fois le programme mis au point, poussez votre travail sur votre dépôt git et appelez l'enseignant avant de passer à l'exercice suivant."""
 
+import sys
+
+def traiterArguments():
+  if len(sys.argv) <= 1:
+    arg = 3
+  else:
+    arg = sys.argv[1]
+    if (arg[0] == "-" and arg[1:].isnumeric() == False) or (arg[0] != "-" and arg.isnumeric() == False):
+      print("l'argument n'est pas un entier")
+      return 1
+
+  return int(arg)
+
+def lireStdin():
+  s = sys.stdin.read()
+  return s
+
+def chiffrer(s,dec):
+  s2 = ""
+  accentMin = ["à", "â", "ä","é", "è", "ê", "ë","î", "ï","ô", "ö","ù", "û", "ü","ÿ","ç"]
+  accentMaj = ["À", "Â", "Ä","É", "È", "Ê", "Ë","Î", "Ï","Ô", "Ö","Ù", "Û", "Ü","Ÿ","Ç"]
+  for e in s:
+    o = ord(e)
+    if e in accentMin:
+      indice = accentMin.index(e)
+      s2 += accentMaj[indice]
+    elif e in accentMaj:
+      indice = accentMaj.index(e)
+      s2 += accentMin[indice]
+    elif o >= 97 and o <= 122:
+      s2 += chr(o-32+dec)
+    elif o >= 65 and o <= 90:
+      s2 += chr(o+32+dec)
+    else:
+      s2 += e
+  return s2
 
 if __name__ == "__main__":
     dec = traiterArguments()
