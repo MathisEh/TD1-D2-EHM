@@ -9,8 +9,8 @@
 - Une fois le programme mis au point, poussez votre travail sur votre dépôt git et appelez l'enseignant avant de passer à l'exercice suivant."""
 import sys,os
 
-def lire():
-    if len(sys.argv)>1:
+def lire(chemin):
+    if len(sys.argv)>1 or chemin != "": #pour pouvoir appeler lire directement depuis ascii.py
         chemin = sys.argv[1]
         try:
             flux = open(chemin,'r')
@@ -34,7 +34,7 @@ def lire():
     print("nombre de lettre:", len(s)-1)
     print("nombre de mots:", nbrmots)
     print("nombre de ligne:", nbrligne)
-    return 0
+    return [len(s)-1,nbrmots,nbrligne]
 
     
 
@@ -45,4 +45,4 @@ def lire():
 
 
 if __name__ == "__main__":
-    lire()
+    lire("")

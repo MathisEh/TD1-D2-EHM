@@ -13,7 +13,7 @@
 - Une fois le programme mis au point, poussez votre travail sur votre dépôt git et appelez l'enseignant avant de passer à l'exercice suivant. 
 """
 import sys
-
+import comptage
 def lire():
     chemin = sys.argv[1]
     try:
@@ -22,7 +22,7 @@ def lire():
     except:
         print("erreur, le fichier n'existe pas")
         return 1
-    if s = "":
+    if s == "":
         print("fichier vide")
         return 0
     compt = [0 for i in range(0,26)]
@@ -47,8 +47,10 @@ def lire():
     tot = 0
     for e in compt:
         tot = e + tot
+    l = comptage.lire(chemin)
+
     for i in range(0,26):
-        print(chr(i+97),"|",compt[i],"|",compt[i]/tot,"%")
+        print(chr(i+97),"|",compt[i],"|",compt[i]/tot*100,"%")
     return 0
 
 
