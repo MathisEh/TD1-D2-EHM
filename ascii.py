@@ -12,12 +12,37 @@
 - Tester votre programme sur le texte suivant : *"Portez ce vieux whisky au juge blond qui fume"*. Que constatez-vous en examinant les résultats ? Qu'est-ce-qu'un 📌 **pangramme** ? A quoi servent les pangrammes en informatique ?
 - Une fois le programme mis au point, poussez votre travail sur votre dépôt git et appelez l'enseignant avant de passer à l'exercice suivant. 
 """
+import sys
 
 def lire():
-    # récupération des arguments et sélection du flux
-    # comptage
-    # affichage
-    pass
+    chemin = sys.argv[1]
+    try:
+        flux = open(chemin,'r')
+        s = flux.read()
+    except:
+        print("erreur, le fichier n'existe pas")
+        return 1
+    compt = [0 for i in range(0,26)]
+    for i in range(0,len(s)):
+        match s[i]:
+            case "é":
+                compt[4] += 1
+            case "è":
+                compt[4] += 1
+            case "ê":
+                compt[4] += 1
+            case "à":
+                compt[0] += 1
+            case "ç":
+                compt[2] += 1
+            case :
+                o = ord(s[i])
+                if o >= 65 and o <= 90:
+                    compt[o-65] += 1
+                if o >= 97 and o <= 122:
+                    compt[o-97] += 1
+    return compt
+
 
 
 if __name__ == "__main__":
