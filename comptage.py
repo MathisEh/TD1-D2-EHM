@@ -7,14 +7,35 @@
 - De façon à ne pas trop compliquer les traitements, on considérera qu'un mot est une séquence de caractères encadrée de séparateurs et dans un premier temps, seuls trois séparateurs seront pris en compte : le saut de ligne, l'espace et le caractère de tabulation ('\t')
 - Votre programme devra proposer un mode de débogage affichant les numéros des mots détectés. 
 - Une fois le programme mis au point, poussez votre travail sur votre dépôt git et appelez l'enseignant avant de passer à l'exercice suivant."""
-
+import sys,os
 
 def lire():
-    # récupération des arguments et sélection du flux
-    # parcours du flux
-    # comptage
-    # affichage 
-    return ""
+    if len(sys.argv)>0:
+        chemin = sys.argv[1]
+        try:
+            flux = open(chemin,'r')
+            s = read.flux()
+        except:
+            print("erreur, le fichier n'existe pas")
+            return 1
+    else:
+        s = sys.stdin.read()
+    nbrchar = 0
+    nbrmots = 0
+    nbrligne = 0
+    for e in s:
+        nbrchar += 1
+        if e == " " or e == "\n" or e == "\t":
+            nbrmots += 1
+        if e == "\n":
+            nbrligne += 1
+    print("nombre de lettre:", nbrchar)
+    print("nombre de mots:", nbrmots)
+    print("nombre de ligne:", nbrligne)
+    return 0
+
+    
+
 
 
     
